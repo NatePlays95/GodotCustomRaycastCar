@@ -1,0 +1,145 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/physics/RayCastWheel.gd" type="Script" id=1]
+[ext_resource path="res://scenes/TestCamera.gd" type="Script" id=2]
+[ext_resource path="res://scenes/TestCar.gd" type="Script" id=3]
+
+[sub_resource type="OpenSimplexNoise" id=3]
+period = 0.1
+
+[sub_resource type="NoiseTexture" id=4]
+noise = SubResource( 3 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.529412, 0.478431, 0.478431, 1 )
+albedo_texture = SubResource( 4 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 2, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.117647, 0.505882, 0.847059, 1 )
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.0980392, 0.0117647, 0.0117647, 1 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.995892, -0.0460629, 0.0779534, 0, 0.860929, 0.508726, -0.0905457, -0.506636, 0.857392, 0, 9.50227, 14.6864 )
+fov = 68.1438
+script = ExtResource( 2 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.10375, 0 )
+use_collision = true
+width = 44.4542
+depth = 58.6652
+material = SubResource( 5 )
+
+[node name="Car" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4.62099, 0 )
+mass = 1000.0
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Car"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+shape = SubResource( 2 )
+
+[node name="CSGBox" type="CSGBox" parent="Car"]
+width = 4.0
+height = 1.0
+material = SubResource( 6 )
+
+[node name="CSGBox2" type="CSGBox" parent="Car"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+height = 1.0
+depth = 1.8
+material = SubResource( 6 )
+
+[node name="CSGBox5" type="CSGBox" parent="Car"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92118, 0.495302, 0 )
+width = 0.910717
+height = 0.311975
+depth = 2.55151
+material = SubResource( 6 )
+
+[node name="CSGBox3" type="CSGBox" parent="Car"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01433, 0.328392, -0.768625 )
+width = 0.0606996
+height = 0.0963531
+depth = 0.409352
+
+[node name="CSGBox4" type="CSGBox" parent="Car"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01433, 0.328392, 0.749574 )
+width = 0.0606996
+height = 0.0963531
+depth = 0.409352
+
+[node name="RayCastWheel" type="RayCast" parent="Car"]
+transform = Transform( 1, -4.19095e-09, -1.86265e-09, -4.19095e-09, 1, 0, -1.86265e-09, 0, 1, 2, 0, -1 )
+enabled = true
+debug_shape_custom_color = Color( 0.780392, 0, 0, 1 )
+script = ExtResource( 1 )
+spring_stiffness = 30000.0
+damping_compress = 1500.0
+damping_rebound = 1500.0
+
+[node name="CSGBox" type="CSGBox" parent="Car/RayCastWheel"]
+transform = Transform( 1, 0, 0, -1.45403e-26, 1, 0, 0, 0, 1, 0, -0.621898, 0 )
+width = 1.01603
+height = 1.00737
+depth = 0.350889
+material = SubResource( 7 )
+
+[node name="RayCastWheel2" type="RayCast" parent="Car"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1 )
+enabled = true
+debug_shape_custom_color = Color( 0.780392, 0, 0, 1 )
+script = ExtResource( 1 )
+spring_stiffness = 30000.0
+damping_compress = 1500.0
+damping_rebound = 1500.0
+
+[node name="CSGBox" type="CSGBox" parent="Car/RayCastWheel2"]
+transform = Transform( 1, 0, 0, -1.45403e-26, 1, 0, 0, 0, 1, 0, -0.621898, 0 )
+width = 1.01603
+height = 1.00737
+depth = 0.350889
+material = SubResource( 7 )
+
+[node name="RayCastWheel3" type="RayCast" parent="Car"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1 )
+enabled = true
+debug_shape_custom_color = Color( 0.780392, 0, 0, 1 )
+script = ExtResource( 1 )
+is_steer = false
+is_motor = false
+spring_stiffness = 30000.0
+damping_compress = 2000.0
+damping_rebound = 1500.0
+
+[node name="CSGBox" type="CSGBox" parent="Car/RayCastWheel3"]
+transform = Transform( 1, 0, 0, -1.45403e-26, 1, 0, 0, 0, 1, 0, -0.621898, 0 )
+width = 1.01603
+height = 1.00737
+depth = 0.350889
+material = SubResource( 7 )
+
+[node name="RayCastWheel4" type="RayCast" parent="Car"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1 )
+enabled = true
+debug_shape_custom_color = Color( 0.780392, 0, 0, 1 )
+script = ExtResource( 1 )
+is_steer = false
+is_motor = false
+spring_stiffness = 30000.0
+damping_compress = 2000.0
+damping_rebound = 1500.0
+
+[node name="CSGBox" type="CSGBox" parent="Car/RayCastWheel4"]
+transform = Transform( 1, 0, 0, -1.45403e-26, 1, 0, 0, 0, 1, 0, -0.621898, 0 )
+width = 1.01603
+height = 1.00737
+depth = 0.350889
+material = SubResource( 7 )
