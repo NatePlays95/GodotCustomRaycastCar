@@ -1,8 +1,11 @@
 # GodotCustomRaycastCar
 WIP. My attempt to replace VehicleBody with my own custom physics model.
 
+
 Heavily inspired by this video from Toyful Games: youtube.com/watch?v=CdPYlj5uZeI
+
 Car assets are not mine, and temporary.
+
 Current test map is by Jreo at: jreo.itch.io
 
 ## Tips for use
