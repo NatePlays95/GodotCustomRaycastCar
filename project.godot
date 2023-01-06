@@ -9,24 +9,37 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "ImmediateGeometry",
+"base": "Node",
+"class": "AbstractEngine",
+"language": "GDScript",
+"path": "res://main_scripts/physics/engines/AbstractEngine.gd"
+}, {
+"base": "Reference",
 "class": "DebugLine3D",
 "language": "GDScript",
-"path": "res://scripts/physics/DebugLine3D.gd"
+"path": "res://main_scripts/physics/DebugLine3D.gd"
+}, {
+"base": "RigidBody",
+"class": "RayCastCar",
+"language": "GDScript",
+"path": "res://main_scripts/physics/RayCastCar.gd"
 }, {
 "base": "RayCast",
 "class": "RayCastWheel",
 "language": "GDScript",
-"path": "res://scripts/physics/RayCastWheel.gd"
+"path": "res://main_scripts/physics/RayCastWheel.gd"
 } ]
 _global_script_class_icons={
+"AbstractEngine": "",
 "DebugLine3D": "",
+"RayCastCar": "",
 "RayCastWheel": ""
 }
 
 [application]
 
 config/name="Raycast Car"
+run/main_scene="res://scenes/RCP Test Scene/scene.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -69,10 +82,18 @@ steer_right={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":68,"unicode":0,"echo":false,"script":null)
  ]
 }
+flip_car={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":70,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [physics]
 
+common/physics_fps=240
+common/physics_jitter_fix=0.1
 common/enable_pause_aware_picking=true
+common/physics_interpolation=true
 
 [rendering]
 

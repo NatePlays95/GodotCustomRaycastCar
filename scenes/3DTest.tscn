@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://scripts/physics/RayCastWheel.gd" type="Script" id=1]
+[ext_resource path="res://main_scripts/physics/RayCastWheel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/TestCamera.gd" type="Script" id=2]
 [ext_resource path="res://scenes/TestCar.gd" type="Script" id=3]
+[ext_resource path="res://main_scripts/physics/RayCastCar.gd" type="Script" id=4]
 
 [sub_resource type="OpenSimplexNoise" id=3]
 period = 0.1
@@ -143,3 +144,8 @@ width = 1.01603
 height = 1.00737
 depth = 0.350889
 material = SubResource( 7 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="RayCastCar" type="RigidBody" parent="."]
+script = ExtResource( 4 )
